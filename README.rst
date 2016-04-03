@@ -14,12 +14,14 @@ Show system memory::
 
     $ show-mem
 
+    Commit Mem (MB):       27,852.80 total   17,278.42 used
     Physical Mem (MB):     16,384.00 total   13,128.05 used
 
 With delta from last run::
 
     $ show-mem
 
+    Commit Mem (MB):       27,852.80 total   17,888.59 used (delta: 310.15)
     Physical Mem (MB):     16,384.00 total   13,126.40 used (delta: -1.65)
 
 Show memory for process::
@@ -37,7 +39,8 @@ Watch system/process memory using watch_::
 
     $ watch show-mem -s -p python
 
-    Physical Mem (MB):     16,384.00 total   13,128.05 used
+    Commit Mem (MB):       27,852.80 total   17,888.59 used (delta: 310.15)
+    Physical Mem (MB):     16,384.00 total   13,126.40 used (delta: -1.65)
 
     2 processes matching "python" (showing 1st & last):
       PID 26143 (MB):          40.79 rss         30.23 private
