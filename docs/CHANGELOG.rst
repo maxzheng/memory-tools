@@ -1,5 +1,11 @@
-Version 0.0.2
+Version 0.0.3
 ================================================================================
+
+* Add docs
+* Add show-mem to show system/process memory stats
+
+Version 0.0.2
+--------------------------------------------------------------------------------
 
 * Initial setup
 * Initial commit
