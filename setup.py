@@ -15,11 +15,12 @@ setuptools.setup(
 
   url='https://github.com/maxzheng/memory-tools',
 
-#  entry_points={
-#    'console_scripts': [
-#      'script_name = package.module:entry_callable',
-#    ],
-#  },
+  entry_points={
+    'console_scripts': [
+      'show-mem = memorytools.show_mem:main',
+      'stress-test = memorytools.stress_test:main',
+    ],
+  },
 
   install_requires=open('requirements.txt').read(),
 
