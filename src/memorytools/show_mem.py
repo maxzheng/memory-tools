@@ -8,9 +8,7 @@ import tempfile
 import click
 import psutil
 
-
 locale.setlocale(locale.LC_ALL, 'en_US')
-f = lambda num: locale.format("%.2f", num, grouping=True)
 
 logging.basicConfig(level=logging.ERROR, format='[%(levelname)s] %(message)s')
 log = logging.getLogger(__name__)
@@ -34,6 +32,10 @@ def main(process, system):
     show_process_stats(process, prefer_break=system)
 
 
+def f(num):
+  return locale.format("%.2f", num, grouping=True)
+
+
 def show_system_stats():
   show_commit_stats()
   show_physical_stats()
@@ -55,7 +57,7 @@ def show_process_stats(name_or_id, prefer_break=False):
 
     for process in psutil.process_iter():
       try:
-        if name_or_id in process.name():
+        if name_or_id.lower() in process.name().lower():
           all_pids.append(process.pid)
       except Exception as e:
         log.debug('Could not get name of process %s: %s', process, e)
@@ -169,6 +171,15 @@ def show_commit_stats():
 
 def show_physical_stats():
   vm_stats = psutil.virtual_memory()
+
+  used = vm_stats.used
+
+  if hasattr(vm_stats, 'buffers'):
+    used -= vm_stats.buffers
+
+  if hasattr(vm_stats, 'cached'):
+    used -= vm_stats.cached
+
   _show_mem_stats_with_delta('Physical Mem', vm_stats.total, vm_stats.used)
 
 

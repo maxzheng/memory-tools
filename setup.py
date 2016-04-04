@@ -45,5 +45,5 @@ setuptools.setup(
     'Programming Language :: Python :: 2.7',
   ],
 
-  keywords='memory tools leaks profiler simple easy to use process usage',
+  keywords='memory tools leaks profiler simple easy to use process usage private rss total',
 )
