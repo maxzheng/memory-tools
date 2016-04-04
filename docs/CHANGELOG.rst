@@ -1,5 +1,10 @@
-Version 0.0.6
+Version 0.0.7
 ================================================================================
+
+* Pass in correct used value
+
+Version 0.0.6
+--------------------------------------------------------------------------------
 
 * Subtract cached / buffers when showing used physical mem
 

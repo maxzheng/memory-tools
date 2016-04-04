@@ -5,7 +5,7 @@ import setuptools
 
 setuptools.setup(
   name='memory-tools',
-  version='0.0.6',
+  version='0.0.7',
 
   author='Max Zheng',
   author_email='maxzheng.os @t gmail.com',
