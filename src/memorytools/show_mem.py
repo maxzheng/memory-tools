@@ -180,7 +180,7 @@ def show_physical_stats():
   if hasattr(vm_stats, 'cached'):
     used -= vm_stats.cached
 
-  _show_mem_stats_with_delta('Physical Mem', vm_stats.total, vm_stats.used)
+  _show_mem_stats_with_delta('Physical Mem', vm_stats.total, used)
 
 
 def _show_mem_stats_with_delta(title, total, used):
