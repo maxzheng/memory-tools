@@ -18,7 +18,7 @@ setuptools.setup(
   entry_points={
     'console_scripts': [
       'show-mem = memorytools.show_mem:main',
-      'stress-test = memorytools.stress_test:main',
+      'loop = memorytools.loop:main',
     ],
   },
 
