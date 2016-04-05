@@ -3,7 +3,7 @@ memory-tools
 
 A set of simple yet effective tools to troubleshoot memory leaks.
 
-When debugging a memory leak issue in Python 2.6, the author has tried memory_profiler_ and heapy_,
+When debugging memory issues in Python 2.6, the author has tried memory_profiler_ and heapy_,
 unfortunately neither worked. And so memory-tools was born with the goal of being simple, so it
 should always work, yet effective, so it is good at helping you find memory leaks.
 
@@ -127,6 +127,21 @@ Run adhoc code in a loop - count of 2 and concurrency of 3::
     ... 5 more times
 
     Looped 2 times in 0.21 secs with concurrency of 3 (6 runs, 0.10 secs per loop, 0.03 secs per run)
+
+
+Log Stack / Start Debugger on Signal
+------------------------------------
+
+If you need to get a stacktrace of a running process, or start the debugger in specific situations to look at memory footprint,
+then a signal handler could help::
+
+    from memorytools import add_debug_handler
+
+    add_debug_handler(start_debugger_password='test')  # remove start_debugger_password to skip rpdb2 debugger
+
+The above will add a handler to SIGUSR2 that will log a stacktrace on trigger and also start the rpdb2_ debugger.
+
+.. _rpdb2: http://winpdb.org/docs/embedded-debugging/
 
 
 Links & Contact Info

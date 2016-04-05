@@ -1,10 +1,39 @@
 import gc
 import locale
+import logging
 import os
+import signal
 import sys
+import traceback
 
 locale.setlocale(locale.LC_ALL, 'en_US')
 fmt = lambda stat: locale.format('%d', stat, grouping=True)
+
+log = logging.getLogger(__name__)
+
+
+def add_debug_handler(sig=signal.SIGUSR2, log_stack=True, start_debugger_password=None):
+  """
+    Add a signal handler for debugging by logging a stack or starting rpdb2 debugger.
+
+    :param sig: Signal to attach handler to. Defaults to signal.SIGUSR2
+    :param bool log_stack: Log stacktrace when the signal is received. Useful to find where the program is stuck.
+    :param str start_debugger_password: Password to start rpdb2 debugger. By default, this is not started / only starts if
+                                        a password is provided. Note that this depends on `rpdb2` module in `winpdb` package.
+  """
+
+  def debug_handler(_, frame):
+    if log_stack:
+      log.info("Got SIGUSR2. Traceback:\n%s", ''.join(traceback.format_stack(frame)))
+
+    if start_debugger_password:
+      try:
+        import rpdb2
+        rpdb2.start_embedded_debugger(start_debugger_password)
+      except ImportError:
+        log.error('rpdb2, part of winpdb, is required to start debugger. Please install package: pip install winpdb')
+
+  signal.signal(sig, debug_handler)
 
 
 def save_objects(objs=None):
