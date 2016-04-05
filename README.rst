@@ -102,7 +102,7 @@ Looping / Stress Testing
 Use the `loop` command to run a command, module:method, or code in a forever loop to perform stress testing, which is
 useful in finding memory leaks. The command/code should, of course, act against a long running server for this to be useful.
 
-Run a script in a loop - usually the script should make a service call to your server::
+Run a script in a loop::
 
     $ loop show-mem 1
 
