@@ -1,5 +1,10 @@
-Version 1.0.1
+Version 1.0.2
 ================================================================================
+
+* Add limit param to summarize_objects and do gc.collect() before calling gc.get_objects()
+
+Version 1.0.1
+--------------------------------------------------------------------------------
 
 * Update doc
 * Fix intro sentence
