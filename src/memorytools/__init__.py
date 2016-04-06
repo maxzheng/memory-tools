@@ -50,7 +50,9 @@ def save_objects(objs=None):
 
     :param list objs: gc objects to summarize. Defaults to gc.get_objects()
   """
-  objs = objs or gc.get_objects()
+  if not objs:
+    gc.collect()
+    objs = gc.get_objects()
 
   objs_sizes = sorted([(sys.getsizeof(o), i) for i, o in enumerate(objs)], reverse=True)
   objs_size = sum([s[0] for s in objs_sizes])
@@ -60,7 +62,7 @@ def save_objects(objs=None):
     fp.write('Objects count: %s\n' % fmt(len(objs)))
     fp.write('Objects size: %s\n\n' % fmt(objs_size))
 
-    fp.write('Objects summary:\n%s\n\n' % summarize_objects(objs, echo=False))
+    fp.write('Objects summary:\n%s\n\n' % summarize_objects(objs, echo=False, limit=20))
 
     for size, i in objs_sizes:
       try:
@@ -74,15 +76,17 @@ def save_objects(objs=None):
   return msg
 
 
-def summarize_objects(objs=None, echo=True):
+def summarize_objects(objs=None, echo=True, limit=10):
   """
     Provide a summary of gc objects based on type. Two summaries: ordered by size, ordered by count
 
     :param list objs: gc objects to summarize. Defaults to gc.get_objects()
     :param bool echo: Print summary results to stdout if True, otherwise return results instead.
+    :param int limit: Limit number of results in each summary. Defaults to show top 10.
     :return: Summary results if echo is False
   """
   if not objs:
+    gc.collect()
     objs = gc.get_objects()
 
   objs_dict = _summarize_objects(objs)
@@ -111,9 +115,9 @@ def summarize_objects(objs=None, echo=True):
     print
 
     for summary in [size_summary, count_summary]:
-      print '\n'.join(summary[:10])
+      print '\n'.join(summary[:limit + 1])
       if len(summary) > 10:
-        print '... %d more' % (len(summary) - 10)
+        print '... %d more' % (len(summary) - limit - 1)
       print
 
   else:
