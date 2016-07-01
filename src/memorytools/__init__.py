@@ -71,7 +71,7 @@ def save_objects(objs=None):
         fp.write('IDX %d: %d %s EXCEPTION: %s\n' % (i, size, type(objs[i]), str(e)))
 
   msg = 'Wrote %d objects to %s (%d bytes)' % (len(objs), objs_file, objs_size)
-  print msg
+  print(msg)
 
   return msg
 
@@ -97,7 +97,10 @@ def summarize_objects(objs=None, echo=True, limit=10):
 
   total_size = total_count = 0
 
-  for kind, stats in objs_dict.iteritems():
+  # Avoid importing six for this one issue
+  iteritems = objs_dict.iteritems if hasattr(objs_dict, 'iteritems') else objs_dict.items
+
+  for kind, stats in iteritems():
     objs_by_size.append((stats['size'], stats['count'], kind))
     objs_by_count.append((stats['count'], stats['size'], kind))
     total_size += stats['size']
@@ -110,15 +113,15 @@ def summarize_objects(objs=None, echo=True, limit=10):
     count_summary.append('{0:>5s} {1:>10s} {2}'.format(fmt(count), fmt(size), kind))
 
   if echo:
-    print 'Objects count', fmt(total_count)
-    print 'Objects size', fmt(total_size)
-    print
+    print('Objects count', fmt(total_count))
+    print('Objects size', fmt(total_size))
+    print()
 
     for summary in [size_summary, count_summary]:
-      print '\n'.join(summary[:limit + 1])
+      print('\n'.join(summary[:limit + 1]))
       if len(summary) > 10:
-        print '... %d more' % (len(summary) - limit - 1)
-      print
+        print('... %d more' % (len(summary) - limit - 1))
+      print()
 
   else:
     return '\n'.join(size_summary + [''] + count_summary)

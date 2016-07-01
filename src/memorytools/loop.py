@@ -72,7 +72,7 @@ def run_command_or_code(command_or_code):
     # code
     elif ' ' in command_or_code:
 
-      exec command_or_code
+      exec(command_or_code)
 
     # command
     else:

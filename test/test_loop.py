@@ -17,7 +17,7 @@ def test_loop_module(runner):
 
 
 def test_loop_code(runner):
-  result = runner.invoke(main, ['print "Hello World!"', '0.01', '-c', 10, '-cc', 5])
+  result = runner.invoke(main, ['print("Hello World!")', '0.01', '-c', 10, '-cc', 5])
 
   assert result.exit_code == 0
   assert 'Looped 10 times' in result.output

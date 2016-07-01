@@ -122,7 +122,7 @@ Run a module:method in a loop - count of 10::
 
 Run adhoc code in a loop - count of 2 and concurrency of 3::
 
-    $ loop 'print "Hello World!"' 0.1 -c 2 -cc 3
+    $ loop 'print("Hello World!")' 0.1 -c 2 -cc 3
     Hello World!
     ... 5 more times
 

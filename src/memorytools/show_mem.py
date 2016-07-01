@@ -214,7 +214,13 @@ def _last_used_mem(name, current_used):
 
   try:
     with open(used_mem_file) as fp:
-      last_used = long(fp.read())
+      last_used_str = fp.read()
+
+      try:
+        last_used = long(last_used_str)
+      except NameError:
+        last_used = int(last_used_str)
+
   except Exception as e:
     log.debug('Error reading from %s: %s', used_mem_file, e)
     last_used = None
