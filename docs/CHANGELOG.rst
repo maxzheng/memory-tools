@@ -1,5 +1,10 @@
-Version 1.0.2
+Version 1.0.3
 ================================================================================
+
+* Make it compatible with Python 3.5
+
+Version 1.0.2
+--------------------------------------------------------------------------------
 
 * Add limit param to summarize_objects and do gc.collect() before calling gc.get_objects()
 
