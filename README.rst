@@ -3,7 +3,7 @@ memory-tools
 
 A set of simple yet effective tools to troubleshoot memory leaks.
 
-When debugging memory issues in Python 2.6, the author has tried memory_profiler_ and heapy_,
+When debugging memory issues in Python 2.6, the author had tried memory_profiler_ and heapy_,
 unfortunately neither worked. And so memory-tools was born with the goal of being simple - it
 should always work, yet effective - it is good at helping you find memory leaks.
 
