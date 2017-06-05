@@ -1,5 +1,12 @@
-Version 1.0.3
+Version 1.0.4
 ================================================================================
+
+* Reindent to 4 spaces and move source files to top level dir
+* Use default locale instead of en_US
+* Correct grammer
+
+Version 1.0.3
+--------------------------------------------------------------------------------
 
 * Make it compatible with Python 3.5
 
