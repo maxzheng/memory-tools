@@ -6,10 +6,12 @@ import signal
 import sys
 import traceback
 
-locale.setlocale(locale.LC_ALL, 'en_US')
-fmt = lambda stat: locale.format('%d', stat, grouping=True)
-
+locale.setlocale(locale.LC_ALL, '')
 log = logging.getLogger(__name__)
+
+
+def fmt(stat):
+    return locale.format('%d', stat, grouping=True)
 
 
 def add_debug_handler(sig=signal.SIGUSR2, log_stack=True, start_debugger_password=None):

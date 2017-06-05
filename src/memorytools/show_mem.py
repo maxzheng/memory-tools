@@ -8,8 +8,6 @@ import tempfile
 import click
 import psutil
 
-locale.setlocale(locale.LC_ALL, 'en_US')
-
 logging.basicConfig(level=logging.ERROR, format='[%(levelname)s] %(message)s')
 log = logging.getLogger(__name__)
 
