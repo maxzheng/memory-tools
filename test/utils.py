@@ -5,10 +5,10 @@ from tempfile import mkdtemp
 
 @contextmanager
 def temp_directory():
-  temp_dir = mkdtemp()
+    temp_dir = mkdtemp()
 
-  try:
-    yield temp_dir
+    try:
+        yield temp_dir
 
-  finally:
-    shutil.rmtree(temp_dir)
+    finally:
+        shutil.rmtree(temp_dir)
