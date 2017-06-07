@@ -1,5 +1,10 @@
-Version 1.0.4
+Version 1.0.5
 ================================================================================
+
+* Attempt to fix missing package
+
+Version 1.0.4
+--------------------------------------------------------------------------------
 
 * Reindent to 4 spaces and move source files to top level dir
 * Use default locale instead of en_US
